@@ -6,7 +6,7 @@
     "type": "offline"
   },
   "server": {
-    "ip": "Ravi499.aternos.me:50129",
+    "ip": "Ravi499.aternos.me",
     "port": 50129,
     "version": "1.21.1"
   },

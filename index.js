@@ -378,6 +378,23 @@ function createBot() {
     });
 
     bot.loadPlugin(pathfinder);
+    bot._client.on('connect', () => {
+  console.log('[Bot] TCP connection established');
+});
+bot._client.on('login', () => {
+  console.log('[Bot] Login packet received - past authentication');
+});
+bot._client.on('disconnect', (packet) => {
+  console.log('[Bot] Disconnect packet received:', JSON.stringify(packet));
+});
+bot.on('login', () => {
+  console.log('[Bot] Logged in successfully - waiting for spawn...');
+});
+bot._client.on('chat', (packet) => {
+  if (!botState.connected) {
+    console.log('[Bot] Pre-spawn message:', JSON.stringify(packet).substring(0, 200));
+  }
+});
 
     // Connection timeout - if no spawn in 60s, reconnect
     const connectionTimeout = setTimeout(() => {
